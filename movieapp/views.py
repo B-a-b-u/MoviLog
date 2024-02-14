@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.urls import reverse
 from .forms import NewUserForm
-from .models import Post
+from .models import Post,Comment
+from django.http import HttpResponseRedirect, JsonResponse
 
 
 #  view function for home page
@@ -37,6 +39,22 @@ def register_user(request):
         return render(request, "movieapp/register.html", {"form": form})
     return render(request, "movieapp/register.html", {"form": form})
 
+# view function for liking a post
+def like_post(request, pk):
+    if request.method == "POST":
+        post = Post.objects.get(id=pk)
+        post.likes += 1
+        post.save()
+        return HttpResponseRedirect(reverse("individual_post",args=[str(pk)]))
+
+    
+def add_comment(request, pk):
+    if request.method == "POST":
+        post = Post.objects.get(id=pk)
+        commenter_name = request.POST.get("commenter_name")
+        comment_text = request.POST.get("comment_text")
+        Comment.objects.create(post=post, commenter_name=commenter_name, comment=comment_text)
+        return redirect("home")
 
 # view for login page
 def login_user(request):

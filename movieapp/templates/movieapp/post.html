@@ -1,18 +1,49 @@
 {% extends "movieapp/base.html" %}
 {% block content %}
     {% if user_post %}
-            <div class="user-post" align="center">
-                <br><br>
-                <strong>UserName :</strong><pre>   <i>{{user_post.user_name}}</i><br></pre>
-                <strong>Posted on :</strong><pre>   <i>{{user_post.created}}</i><br></pre>
-                <strong>Contact :</strong><pre>   {{user_post.email}}</strong><br></pre>
-                <strong>Caption :</strong><pre>   {{user_post.caption}}</strong><br></pre>
-                <strong>Post : </strong><br>{{user_post.content}}</p><br>
-                <br><br>
-
-            </div>
-            <button><a href="{% url 'home' %}">Go back</a></button>
-            <button align="right"><a href="{% url 'delete_post' user_post.id %}">Delete</a></button>
-            <button align="right"><a href="{% url 'update_post' user_post.id %}">Update</a></button>
+        <div class="user-post" align="center">
+            <br><br>
+            <strong>UserName :</strong><pre>   <i>{{ user_post.user_name }}</i><br></pre>
+            <strong>Posted on :</strong><pre>   <i>{{ user_post.created }}</i><br></pre>
+            <strong>Contact :</strong><pre>   {{ user_post.email }}</strong><br></pre>
+            <strong>Caption :</strong><pre>   {{ user_post.caption }}</strong><br></pre>
+            <strong>Post : </strong><br>{{ user_post.content }}</p><br>
+            <br><br>
+        </div>
+        
+        <!-- Form for liking a post -->
+    <!-- Form for liking a post -->
+    <form method="post" action="{% url 'like_post' user_post.id %}">
+        {% csrf_token %}
+        <button type="submit">Like ({{ user_post.likes }})</button>
+    </form>
+        
+        <!-- Form for adding a comment -->
+        <form method="post" action="{% url 'add_comment' user_post.id %}">
+            {% csrf_token %}
+            <input type="text" name="commenter_name" placeholder="Your Name">
+            <textarea name="comment_text" placeholder="Add a comment"></textarea>
+            <button type="submit">Add Comment</button>
+        </form>
+        
+        <!-- Display comments for the post -->
+        <h3>Comments:</h3>
+        {% for comment in user_post.comments.all %}
+            <p>{{ comment.commenter_name }}: {{ comment.comment }}</p>
+            {% if user.is_authenticated and user.email == user_post.email %}
+                <!-- Form for deleting a comment -->
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <button type="submit">Delete Comment</button>
+                </form>
+            {% endif %}
+        {% endfor %}
+        
+        <br><br>
+        <button><a href="{% url 'home' %}">Go back</a></button>
+        <button align="right"><a href="{% url 'delete_post' user_post.id %}">Delete</a></button>
+        <button align="right"><a href="{% url 'update_post' user_post.id %}">Update</a></button>
     {% endif %}
+
+   
 {% endblock %}

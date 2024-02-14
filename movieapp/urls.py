@@ -9,4 +9,6 @@ urlpatterns = [
     path("delete_post/<int:pk>", views.delete_post, name="delete_post"),
     path("update_post/<int:pk>", views.update_post, name="update_post"),
     path("add_post/", views.add_post, name="add_post"),
+    path("like_post/<int:pk>/", views.like_post, name="like_post"),  # New URL pattern for liking a post
+    path("add_comment/<int:pk>/", views.add_comment, name="add_comment"),  # New URL pattern for adding 
 ]
