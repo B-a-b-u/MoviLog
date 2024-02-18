@@ -51,10 +51,51 @@ def like_post(request, pk):
 def add_comment(request, pk):
     if request.method == "POST":
         post = Post.objects.get(id=pk)
-        commenter_name = request.POST.get("commenter_name")
+        commenter_name = request.user.username
         comment_text = request.POST.get("comment_text")
         Comment.objects.create(post=post, commenter_name=commenter_name, comment=comment_text)
+        return HttpResponseRedirect(reverse("individual_post",args=[str(pk)]))
+
+def update_comment(request, pk):
+    comment = Comment.objects.get(id=pk)
+
+    # Check if the request method is POST and if the user is authenticated and the author of the comment
+    if request.method == "POST" and  request.user.is_authenticated and comment.commenter_name == request.user.username:
+        # Get the updated comment text from the form
+        updated_comment_text = request.POST.get("updated_comment_text")
+
+        # Update the comment
+        comment.comment = updated_comment_text
+        comment.save()
+
+        messages.success(request, "Comment updated successfully")
         return redirect("home")
+    else:
+        messages.error(request, "You are not authorized to update this comment")
+        
+    return render(request, "movieapp/update_comment.html",{"comment":comment})
+
+def delete_comment(request, pk):
+    # Check if the user is authenticated
+    if request.user.is_authenticated:
+        try:
+            # Fetch the comment to be deleted
+            comment = Comment.objects.get(id=pk)
+            
+            # Check if the user is the author of the comment
+            if comment.commenter_name == request.user.username:
+                comment.delete()
+                messages.success(request, "Comment deleted successfully")
+            else:
+                messages.error(request, "You are not authorized to delete this comment")
+        except Comment.DoesNotExist:
+            messages.error(request, "The comment you are trying to delete does not exist")
+    else:
+        messages.error(request, "You need to login first")
+    
+    return redirect("home")
+
+    
 
 # view for login page
 def login_user(request):
@@ -101,7 +142,7 @@ def delete_post(request, pk):
         post = Post.objects.get(id=pk)
 
         # User can only delete the post if he posted that post
-        if request.user.email == post.email:
+        if request.user.email == post.email and request.user.username == post.user_name:
             post.delete()
             messages.success(request, "Post deleted successfully")
             return redirect("home")
@@ -127,8 +168,8 @@ def add_post(request):
         if request.method == "POST":
 
             # getting variables from form
-            username = request.POST.get("username")
-            email = request.POST.get("email")
+            username = request.user.username
+            email = request.user.email
             caption = request.POST.get("caption")
             content = request.POST.get("content")
 
@@ -157,16 +198,16 @@ def update_post(request, pk):
         # fetching current data
         current_post = Post.objects.get(id=pk)
 
-        if request.method == "POST":
+        if request.method == "POST" and request.user.username == current_post.user_name and request.user.email == current_post.email :
             # getting variables from form
-            username = request.POST.get("username")
-            email = request.POST.get("email")
+            # username = current_post.user_name
+            # email = current_post.email
             caption = request.POST.get("caption")
             content = request.POST.get("content")
 
             # updating variables to Database
-            current_post.user_name = username
-            current_post.email = email
+            # current_post.user_name = username
+            # current_post.email = email
             current_post.caption = caption
             current_post.content = content
             current_post.save()

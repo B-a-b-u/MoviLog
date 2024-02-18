@@ -21,22 +21,24 @@
         <!-- Form for adding a comment -->
         <form method="post" action="{% url 'add_comment' user_post.id %}">
             {% csrf_token %}
-            <input type="text" name="commenter_name" placeholder="Your Name">
             <textarea name="comment_text" placeholder="Add a comment"></textarea>
             <button type="submit">Add Comment</button>
         </form>
         
         <!-- Display comments for the post -->
         <h3>Comments:</h3>
+        <p>{{comments}}</p>
         {% for comment in user_post.comments.all %}
-            <p>{{ comment.commenter_name }}: {{ comment.comment }}</p>
-            {% if user.is_authenticated and user.email == user_post.email %}
+            <p>{{ comment.commenter_name }}: {{ comment.comment }} </p>
+            
                 <!-- Form for deleting a comment -->
                 <form method="post" action="">
-                    {% csrf_token %}
-                    <button type="submit">Delete Comment</button>
+                    {% csrf_token %}                
+                     <button align="right"><a href="{% url 'update_comment' comment.id %}">Update</a></button>
+                    
+                    <button><a href="{% url 'delete_comment' comment.id %}">Delete</a></button>
                 </form>
-            {% endif %}
+            
         {% endfor %}
         
         <br><br>

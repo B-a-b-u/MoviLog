@@ -1,0 +1,8 @@
+{% extends 'movieapp/base.html' %}
+{% block content %}
+<form method="post" action="{% url 'update_comment' comment.id %}">
+    {% csrf_token %}
+    <textarea name="updated_comment_text" required>{{ comment.comment }}</textarea>
+    <button type="submit">Update Comment</button>
+</form>
+{% endblock %}
