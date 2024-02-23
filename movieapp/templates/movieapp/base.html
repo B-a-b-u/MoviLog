@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>MoviLog</title>
+        <title>FilmMedia</title>
         {% load static %}
         <link rel="stylesheet" href="{% static 'movieapp/base_style.css' %}">
         {% block extra_css %}
@@ -14,7 +14,10 @@
     <body>
         <div class="navbar">
                <div class="nav-header">
-                   <h1><a href="{% url 'home' %}" > MovieLog </a><h1>
+                <a href="{% url 'home' %}">
+                <img src="{% static 'movieapp/images/FilmMediaLogo.png' %}" alt="Logo" class="logo">
+                <h1 class="title">FilmMedia</h1>
+                </a>
                </div> 
                <div class="nav-icon">
                     <a class="nav-home-icon" href="{% url 'home' %}">Home</a>
@@ -26,12 +29,13 @@
         </div>
         <div class="notification">
             {% if messages %}
-                {% for message in messages %}
-                    <div class="alert">
-                        <strong>{{message}}</strong>
-                        <span class="cls-btn" onclick="this.parentElement.style.display='none';">&times;</span>
-                    </div>
-                {% endfor %}
+            <div class="messages">
+                {% if messages %}
+                    {% for message in messages %}
+                    <p class="{{ message.tags }}">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
             {% endif %}
         </div>
         {% block content %}{% endblock  %}

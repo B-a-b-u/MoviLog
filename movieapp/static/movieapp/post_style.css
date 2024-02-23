@@ -1,0 +1,33 @@
+.user-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .post-content {
+    margin-bottom: 20px;
+  }
+  
+  .post-actions {
+    margin-bottom: 20px;
+  }
+  
+  .comment {
+    margin-bottom: 10px;
+  }
+  
+  .post-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }

@@ -1,0 +1,59 @@
+/* Add some margin and padding to the body element */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Style the header element */
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  /* Style the h1 element */
+  h1 {
+    margin: 0;
+  }
+  
+  /* Style the main element */
+  main {
+    padding: 2rem;
+  }
+  
+  /* Style the form element */
+  form {
+    margin: 0 auto;
+    width: 30rem;
+  }
+  
+  /* Style the label elements */
+  label {
+    display: block;
+    margin-top: 1rem;
+  }
+  
+  /* Style the input and textarea elements */
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Style the button elements */
+  button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+  
+  /* Style the button elements on hover */
+  button:hover {
+    background-color: #444;
+  }

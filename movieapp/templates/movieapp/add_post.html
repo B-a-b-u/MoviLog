@@ -1,5 +1,10 @@
 {% extends 'movieapp/base.html' %}
-{% block content %}
+
+{% load static %}
+
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'movieapp/add_post_style.css' %}">
+    {% endblock extra_css %}{% block content %}
 <div class="new-post">
     <h1 class="new-post-header">New Post</h1>
     <div new-post-form>
@@ -8,20 +13,13 @@
                 {% csrf_token %}
                 <br><br>
 
-                <label for="username">UserName</label>
-                <input type="text" name="username">
-                <br><br>
-
-                <label for="email">Email</label>
-                <input type="email" name="email">
-                <br><br>
-
-                <label for="caption">Caption</label>
+                <label for="caption">Title</label>
                 <input type="text" name="caption">
                 <br><br>
 
                 <label for="content">Content</label>
                 <br>
+                
                 <textarea name="content">Enter your message here</textarea>
                 <br><br>
 

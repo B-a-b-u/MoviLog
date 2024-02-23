@@ -1,0 +1,189 @@
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: black;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    overflow: visible;
+}
+
+.nav-header a {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;
+}
+
+.nav-icon {
+    margin-top: -60px;
+    float: right;
+    display: block;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.nav-icon a {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    padding: 15px;
+    border-radius: 20px;
+    border: 2px solid red;
+}
+
+.nav-icon a:hover {
+    background-color: white;
+    color: black;
+}
+
+.nav-icon a:active {
+    color: black;
+}
+
+.alert {
+    background-color: blue;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding-top: 1%;
+        padding-bottom: 1%;
+    }
+    .nav-header a {
+        margin-left: 10px;
+    }
+    .nav-icon {
+        margin-top: -50px;
+    }
+    .nav-icon a {
+        padding: 10px;
+        border-radius: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar {
+        padding-top: 1%;
+        padding-bottom: 1%;
+    }
+    .nav-header a {
+        margin-left: 5px;
+    }
+    .nav-icon {
+        margin-top: -40px;
+    }
+    .nav-icon a {
+        padding: 10px;
+        border-radius: 10px;
+    }
+}
+
+h1 {
+    color: blue;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+li a {
+    color: red;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+}
+
+li a:hover {
+    color: blue;
+}
+
+button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button a {
+    color: white;
+    text-decoration: none;
+} */
+
+/* Style for body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style for h1 */
+h1 {
+    text-align: center;
+}
+
+/* Style for ul */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Style for li */
+li {
+    margin-bottom: 1%;
+}
+
+/* Style for post caption */
+li a {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333; /* Adjust color as needed */
+    text-decoration: none;
+}
+
+/* Style for post creation date */
+li:nth-child(2) {
+    font-size: 0.8em;
+    color: #999; /* Adjust color as needed */
+    margin-bottom: 3%;
+}
+
+/* Style for button */
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff; /* Adjust color as needed */
+    color: #fff; /* Adjust color as needed */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button a{
+    text-decoration: none;
+color: whitesmoke;
+
+}
+
+button:hover {
+    background-color: #0056b3; /* Adjust color as needed */
+}
+
+button:active {
+    background-color: #004080; /* Adjust color as needed for clicked state */
+    text-decoration: none; /* Remove text decoration when clicked */
+}

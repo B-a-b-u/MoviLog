@@ -1,4 +1,9 @@
 {% extends "movieapp/base.html" %}
+{% load static %}
+
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'movieapp/post_style.css' %}">
+    {% endblock extra_css %}
 {% block content %}
     {% if user_post %}
         <div class="user-post" align="center">

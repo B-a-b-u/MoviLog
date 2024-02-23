@@ -1,27 +1,50 @@
-.navbar{
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+ 
+ .navbar{
+
     background-color: black;
     padding-top: 0.5%;
     padding-bottom: 0.5%;
     overflow: visible;
+
+}
+.nav-header{
+    display: flex;
 }
 .nav-header a{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-decoration: none;
     color : white;
     margin-left : 20px;
+    display: flex;   
 }
-
 .nav-icon{
     margin-top: -60px;
- float :right;
- display : block;
- padding: 10px;
- font-size: 20px;
+    float: right;
+    display: block;
+    padding: 10px;
+    font-size: 20px;
+}
 
+.title{
+    text-decoration: none;
+   }
+
+.logo {
+    height: 50px;
+    width: 50px; /* Adjust size as needed */
+    margin-top: 5%;
+    margin-right: 10px;
+    border-radius: 50px;
 }
 
 .nav-icon a{
-   text-decoration: none;
+    text-decoration: none;
     color : white;
     background-color: black;
     padding : 15px;
@@ -38,8 +61,67 @@
     color : black;
 }
 
-/* alert message */
+
 .alert{
- background-color : blue;
- color : white;
+    background-color : blue;
+    color : white;
 }
+ @media screen and (max-width: 768px) {
+    .navbar {
+        padding-top: 1%;
+        padding-bottom: 1%;
+    }
+    .nav-header a {
+        margin-left: 10px;
+    }
+    .nav-icon {
+        margin-top: -50px;
+    }
+    .nav-icon a {
+        padding: 10px;
+        border-radius: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar {
+        padding-top: 1%;
+        padding-bottom: 1%;
+    }
+    .nav-header a {
+        margin-left: 5px;
+    }
+    .nav-icon {
+        margin-top: -40px;
+    }
+    .nav-icon a {
+        padding: 10px;
+        border-radius: 10px;
+    }
+}
+
+
+.messages {
+  margin: 1em 0;
+  padding: 1em;
+  list-style: none;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.messages li {
+  margin-bottom: 0.5em;
+}
+
+.messages .error {
+  color: #b32013;
+}
+
+.messages .success {
+  color: #4F8A10;
+}
+
+.messages .info {
+  color: #005A9C;
+} 
