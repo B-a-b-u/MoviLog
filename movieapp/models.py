@@ -9,6 +9,7 @@ class Post(models.Model):
     caption = models.CharField(max_length=50)
     content = models.TextField()
     likes= models.IntegerField(default = 0)
+    image = models.BinaryField()
 
 
     def __str__(self):
