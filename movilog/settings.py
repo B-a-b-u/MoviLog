@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'movilog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "database name",
-        "USER" : "user name",
-        "PASSWORD" : "password",
+        'NAME': "postgres",
+        "USER" : "postgres",
+        "PASSWORD" : "21221",
         "HOST" : "localhost",
         "PORT" : "5432",
     }
