@@ -12,7 +12,7 @@
             <strong>Posted on :</strong><pre>   <i>{{ user_post.created }}</i><br></pre>
             <strong>Contact :</strong><pre>   {{ user_post.email }}</strong><br></pre>
             <strong>Caption :</strong><pre>   {{ user_post.caption }}</strong><br></pre>
-            <strong>Post : </strong><br>{{ user_post.content }}</p><br>
+            <strong>Post : </strong><br>{{ user_post.content | safe}}</p><br>
             <br><br>
         </div>
         
