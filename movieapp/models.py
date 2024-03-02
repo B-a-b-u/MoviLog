@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+from    ckeditor.fields import RichTextField
 
 # Post model
 class Post(models.Model):
@@ -8,7 +8,7 @@ class Post(models.Model):
     user_name = models.CharField(max_length=30)
     email = models.EmailField()
     caption = models.CharField(max_length=50)
-    content = models.TextField()
+    content = RichTextField(blank=True,null= True)
     likes= models.IntegerField(default = 0)
 
     def __str__(self):
