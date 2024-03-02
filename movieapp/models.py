@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 # Post model
@@ -12,6 +13,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.caption[:]
+    
+    def get_absolute_url(self):
+        return reverse("home")
     
 class Comment(models.Model):
     post = models.ForeignKey(Post,on_delete = models.CASCADE,related_name = "comments")

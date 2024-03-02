@@ -26,11 +26,11 @@
     <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
         <br><br>
-        <input type="text" name="username">
         <label for="username">UserName</label>
-<br><br><br>
+        <input type="text" name="username">
+<br>
+<label for="password">Password</label>
         <input type="password" name="password">
-        <label for="password">Password</label>
 
         <button type="submit">Login</button>
 

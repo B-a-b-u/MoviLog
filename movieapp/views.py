@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.views.generic import CreateView,ListView
 from django.urls import reverse
 from .forms import NewUserForm
 from .models import Post,Comment
@@ -8,10 +9,16 @@ from django.http import HttpResponseRedirect, JsonResponse
 
 
 #  view function for home page
-def home(request):
-    # Getting object of database
-    posts = Post.objects.all()
-    return render(request, "movieapp/home.html", {"posts": posts})
+# def home(request):
+#     # Getting object of database
+#     posts = Post.objects.all()
+#     return render(request, "movieapp/home.html", {"posts": posts})
+
+class Home(ListView):
+    model = Post
+    template_name = "movieapp/home.html" 
+    context_object_name = "posts"
+    ordering = ["-created"]
 
 
 # view for register page
@@ -159,33 +166,39 @@ def delete_post(request, pk):
 
 # View for adding new post
 
-def add_post(request):
+# def add_post(request):
 
-    # Checking if the user is logged in
-    if request.user.is_authenticated:
+#     # Checking if the user is logged in
+#     if request.user.is_authenticated:
 
-        # checking if the request is post
-        if request.method == "POST":
+#         # checking if the request is post
+#         if request.method == "POST":
 
-            # getting variables from form
-            username = request.user.username
-            email = request.user.email
-            caption = request.POST.get("caption")
-            content = request.POST.get("content")
+#             # getting variables from form
+#             username = request.user.username
+#             email = request.user.email
+#             caption = request.POST.get("caption")
+#             content = request.POST.get("content")
 
-            # Adding variables to Database
-            new_post = Post()
-            new_post.user_name = username
-            new_post.email = email
-            new_post.caption = caption
-            new_post.content = content
-            new_post.save()
+#             # Adding variables to Database
+#             new_post = Post()
+#             new_post.user_name = username
+#             new_post.email = email
+#             new_post.caption = caption
+#             new_post.content = content
+#             new_post.save()
 
-            return redirect("home")
-    else:
-        messages.warning(request,"You need to login to add a post...")
-        return redirect("login")
-    return render(request, "movieapp/add_post.html")
+#             return redirect("home")
+#     else:
+#         messages.warning(request,"You need to login to add a post...")
+#         return redirect("login")
+#     return render(request, "movieapp/add_post.html")
+
+class Add_post(CreateView):
+    model = Post
+    template_name = "movieapp/add_post.html"
+    fields = ("caption","content")
+
 
 
 # Views for updating post

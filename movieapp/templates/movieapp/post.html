@@ -48,8 +48,10 @@
         
         <br><br>
         <button><a href="{% url 'home' %}">Go back</a></button>
+        {% if user.email == user_post.email %}
         <button align="right"><a href="{% url 'delete_post' user_post.id %}">Delete</a></button>
         <button align="right"><a href="{% url 'update_post' user_post.id %}">Update</a></button>
+        {% endif %}
     {% endif %}
 
    
