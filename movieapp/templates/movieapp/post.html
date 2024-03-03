@@ -13,6 +13,8 @@
             <strong>Contact :</strong><pre>   {{ user_post.email }}</strong><br></pre>
             <strong>Caption :</strong><pre>   {{ user_post.caption }}</strong><br></pre>
             <strong>Post : </strong><br>{{ user_post.content | safe}}</p><br>
+            <p>{{ user_post.images.url }}</p>
+            <img src="{{ user_post.images.url }}" width="100px" height="100px" alt="image"/><br><br>
             <br><br>
         </div>
         

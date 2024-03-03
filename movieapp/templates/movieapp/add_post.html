@@ -9,7 +9,7 @@
     <h1 class="new-post-header">New Post</h1>
     <div new-post-form>
         {% if user.is_authenticated %}
-            <form action="{% url 'add_post' %}" method="POST">
+            <form action="{% url 'add_post' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.media }}
                 {{ form.as_p }}

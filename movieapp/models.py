@@ -7,6 +7,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     user_name = models.CharField(max_length=30)
     email = models.EmailField()
+    images = models.ImageField(null= True, blank=True, upload_to= "images/")
     caption = models.CharField(max_length=50)
     content = RichTextField(blank=True,null= True)
     likes= models.IntegerField(default = 0)

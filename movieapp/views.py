@@ -197,7 +197,7 @@ def delete_post(request, pk):
 class Add_post(CreateView):
     model = Post
     template_name = "movieapp/add_post.html"
-    fields = ("caption","content")
+    fields = ("caption","content","images")
 
 
 
