@@ -1,60 +1,83 @@
 {% extends "movieapp/base.html" %}
 {% load static %}
 
-    {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'movieapp/post_style.css' %}">
-    {% endblock extra_css %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'movieapp/post_style.css' %}">
+{% endblock extra_css %}
+
 {% block content %}
+<div class="container">
     {% if user_post %}
-        <div class="user-post" align="center">
-            <br><br>
-            <strong>UserName :</strong><pre>   <i>{{ user_post.user_name }}</i><br></pre>
-            <strong>Posted on :</strong><pre>   <i>{{ user_post.created }}</i><br></pre>
-            <strong>Contact :</strong><pre>   {{ user_post.email }}</strong><br></pre>
-            <strong>Caption :</strong><pre>   {{ user_post.caption }}</strong><br></pre>
-            <strong>Post : </strong><br>{{ user_post.content | safe}}</p><br>
-            <p>{{ user_post.images.url }}</p>
-            <img src="{{ user_post.images.url }}" width="100px" height="100px" alt="image"/><br><br>
-            <br><br>
+    <div class="user-post">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <img src="{{ user_post.images.url }}" class="card-img-top" alt="image">
+                    <div class="card-body">
+                        <h5 class="card-title">Posted by: {{ user_post.user_name }} </h5>
+                        <p class="card-text"><small class="text-muted">Posted on: {{ user_post.created }}</small></p>
+                        <p class="card-text"><strong>Contact:</strong> {{ user_post.email }}</p>
+                        <p class="card-text"><strong>Caption:</strong> {{ user_post.caption }}</p>
+                        <p class="card-text"><strong>Post:</strong><br>{{ user_post.content | safe }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <!-- Form for liking a post -->
-    <!-- Form for liking a post -->
-    <form method="post" action="{% url 'like_post' user_post.id %}">
-        {% csrf_token %}
-        <button type="submit">Like ({{ user_post.likes }})</button>
-    </form>
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-8">
+                <form method="post" action="{% url 'like_post' user_post.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Like {{ user_post.likes }}</button>
+                </form>
+            </div>
+        </div>
         
         <!-- Form for adding a comment -->
-        <form method="post" action="{% url 'add_comment' user_post.id %}">
-            {% csrf_token %}
-            <textarea name="comment_text" placeholder="Add a comment"></textarea>
-            <button type="submit">Add Comment</button>
-        </form>
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-8">
+                <form method="post" action="{% url 'add_comment' user_post.id %}">
+                    {% csrf_token %}
+                    <textarea name="comment_text" class="form-control" rows="3" placeholder="Add a comment"></textarea>
+                    <button type="submit" class="btn btn-primary mt-2">Add Comment</button>
+                </form>
+            </div>
+        </div>
         
         <!-- Display comments for the post -->
-        <h3>Comments:</h3>
-        <p>{{comments}}</p>
-        {% for comment in user_post.comments.all %}
-            <p>{{ comment.commenter_name }}: {{ comment.comment }} </p>
-            
-                <!-- Form for deleting a comment -->
-                <form method="post" action="">
-                    {% csrf_token %}                
-                     <button align="right"><a href="{% url 'update_comment' comment.id %}">Update</a></button>
-                    
-                    <button><a href="{% url 'delete_comment' comment.id %}">Delete</a></button>
-                </form>
-            
-        {% endfor %}
-        
-        <br><br>
-        <button><a href="{% url 'home' %}">Go back</a></button>
-        {% if user.email == user_post.email %}
-        <button align="right"><a href="{% url 'delete_post' user_post.id %}">Delete</a></button>
-        <button align="right"><a href="{% url 'update_post' user_post.id %}">Update</a></button>
-        {% endif %}
-    {% endif %}
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-8">
+                <h3>Comments:</h3>
+                {% for comment in user_post.comments.all %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <p class="card-text"><strong>{{ comment.commenter_name }}:</strong> {{ comment.comment }}</p>
+                        <!-- Form for deleting a comment -->
+                        <form method="post" action="">
+                            {% csrf_token %}                
+                            <button class="btn btn-outline-primary"><a href="{% url 'update_comment' comment.id %}" style="text-decoration: none; color: inherit;">Update</a></button>
+<button class="btn btn-outline-danger"><a href="{% url 'delete_comment' comment.id %}" style="text-decoration: none; color: inherit;">Delete</a></button>
 
-   
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-8">
+                <button class="btn btn-secondary" ><a href="{% url 'home' %}" style="text-decoration: none; color: inherit;">Go back</a></button>
+                {% if user.email == user_post.email %}
+                <button class="btn btn-outline-danger" style="float: right; margin-left: 5px;"><a href="{% url 'delete_post' user_post.id %}" style="text-decoration: none; color: inherit;">Delete Post</a></button>
+                <button class="btn btn-outline-primary" style="float: right; margin-left: 5px"><a href="{% url 'update_post' user_post.id %}" style="text-decoration: none; color: inherit;">Update Post</a></button>
+
+              
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
 {% endblock %}

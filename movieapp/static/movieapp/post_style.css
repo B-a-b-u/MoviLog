@@ -6,7 +6,11 @@
     border-radius: 5px;
     background-color: #f9f9f9;
   }
-  
+  .custom-btn-like {
+    background-color: red;
+    border-color: red;
+}
+
   .post-header {
     display: flex;
     justify-content: space-between;

@@ -199,6 +199,11 @@ class Add_post(CreateView):
     template_name = "movieapp/add_post.html"
     fields = ("caption","content","images")
 
+    def form_valid(self, form):
+        form.instance.user_name = self.request.user.username
+        form.instance.email = self.request.user.email
+        return super().form_valid(form)
+
 
 
 # Views for updating post

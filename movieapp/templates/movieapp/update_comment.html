@@ -1,8 +1,50 @@
+
+
 {% extends 'movieapp/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Update Comment</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'movieapp/update_comment_style.css' %}">
+</head>
+<body>
+
 {% block content %}
-<form method="post" action="{% url 'update_comment' comment.id %}">
-    {% csrf_token %}
-    <textarea name="updated_comment_text" required>{{ comment.comment }}</textarea>
-    <button type="submit">Update Comment</button>
-</form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>Update Comment</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{% url 'update_comment' comment.id %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <textarea name="updated_comment_text" class="form-control" rows="5" required>{{ comment.comment }}</textarea>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-block">Update Comment</button>
+                    </form>
+            <br><br>    
+
+                <button class="btn btn-secondary" ><a href="{% url 'individual_post' comment.post.id %}" style="text-decoration: none; color: inherit;">Go back</a></button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
+<!-- Bootstrap JS (optional) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

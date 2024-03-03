@@ -1,35 +1,28 @@
 {% extends 'movieapp/base.html' %}
-
 {% load static %}
 
-    {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'movieapp/add_post_style.css' %}">
-    {% endblock extra_css %}{% block content %}
-<div class="new-post">
-    <h1 class="new-post-header">New Post</h1>
-    <div new-post-form>
-        {% if user.is_authenticated %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'movieapp/add_post_style.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="new-post">
+        <h1 class="new-post-header">New Post</h1>
+        <div class="new-post-form">
+            {% if user.is_authenticated %}
             <form action="{% url 'add_post' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.media }}
                 {{ form.as_p }}
-                <!-- <br><br>
 
-                <label for="caption">Title</label>
-                <input type="text" name="caption">
-                <br><br>
-
-                <label for="content">Content</label>
+                <button type="submit" class="btn btn-primary">Post</button>
                 <br>
-                
-                <textarea name="content">Enter your message here</textarea>
-                <br><br>
+                <button class="btn btn-secondary" ><a href="{% url 'home' %}" style="text-decoration: none; color: inherit;">Go back</a></button>
 
-                <button type="submit">Post</button>
-                <button type="reset">Reset</button> -->
-                <button type="submit">Post</button>
-        </form>
-        {% endif %}
+            </form>
+            {% endif %}
+        </div>
     </div>
 </div>
-{% endblock %}  
+{% endblock %}

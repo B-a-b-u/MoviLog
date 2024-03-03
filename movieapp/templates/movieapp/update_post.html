@@ -1,27 +1,51 @@
 {% extends 'movieapp/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Post</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'movieapp/update_post_style.css' %}">
+</head>
+<body>
+
 {% block content %}
-<div class="new-post">
-    <h1 class="new-post-header">New Post</h1>
-    <div new-post-form>
-        {% if user.is_authenticated %}
-            <form action="{% url 'update_post' current_post.id %}" method="POST">
-                {% csrf_token %}
-                <br><br>
-
-                
-                <label for="caption">Caption</label>
-                <input type="text" name="caption" value="{{current_post.caption}}">
-                <br><br>
-
-                <label for="content">Content</label>
-                <br>
-                <textarea name="content" >{{current_post.content}}</textarea>
-                <br><br>
-
-                <button type="submit">Post</button>
-                <button type="reset">Reset</button>
-        </form>
-        {% endif %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>New Post</h2>
+                </div>
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'update_post' current_post.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="caption">Caption</label>
+                                <input type="text" name="caption" class="form-control" value="{{ current_post.caption }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="content">Content</label>
+                                <textarea name="content" class="form-control" rows="5">{{ current_post.content }}</textarea>
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Update Post</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
+
+<!-- Bootstrap JS (optional) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
