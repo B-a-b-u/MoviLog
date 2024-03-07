@@ -49,7 +49,15 @@
     </nav>
 
     <div class="container mt-3">
-        
+        {% if messages %}
+            
+                {% if messages %}
+                    {% for message in messages %}
+                    <p class="{{ message.tags }}">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% endif %}
         {% block content %}{% endblock %}
     </div>
 
